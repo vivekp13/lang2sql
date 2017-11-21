@@ -1,16 +1,19 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*
 
-from Tkinter import *
-import tkFileDialog
-from tkMessageBox import *
+from tkinter import *
+###import tkFileDialog
+from tkinter import filedialog
+#from tkMessageBox import *
+from tkinter import messagebox
 from ln2sql import ln2sql
 
-import sys
-import unicodedata
 
-reload(sys)
-sys.setdefaultencoding("utf-8")
+import unicodedata
+import sys
+import importlib
+importlib.reload(sys)
+#sys.setdefaultencoding("utf-8")
 
 class App:
 	def __init__(self, root):
@@ -70,15 +73,15 @@ class App:
 		self.lanch_parsing()
 
 	def find_sql_file(self):
-		filename = tkFileDialog.askopenfilename(title="Select a SQL file",filetypes=[('sql files','.sql'),('all files','.*')])
+		filename = filedialog.askopenfilename(title="Select a SQL file",filetypes=[('sql files','.sql'),('all files','.*')])
 		self.database_path_label["text"] = filename
 
 	def find_thesaurus_file(self):
-		filename = tkFileDialog.askopenfilename(title="Select a thesaurus file",filetypes=[('thesaurus files','.dat'),('all files','.*')])
+		filename = filedialog.askopenfilename(title="Select a thesaurus file",filetypes=[('thesaurus files','.dat'),('all files','.*')])
 		self.thesaurus_path_label["text"] = filename
 
 	def find_csv_file(self):
-		filename = tkFileDialog.askopenfilename(title="Select a language configuration file",filetypes=[('csv files','.csv'),('all files','.*')])
+		filename = filedialog.askopenfilename(title="Select a language configuration file",filetypes=[('csv files','.csv'),('all files','.*')])
 		self.language_path_label["text"] = filename
 
 	def reset_window(self):
@@ -100,7 +103,7 @@ class App:
 				showinfo('Result', 'Parsing done!')
 			else:
 				showwarning('Warning','You must fill in all fields, please.')
-		except Exception, e:
+		except :
 			showwarning('Error', e)
 		return
 
